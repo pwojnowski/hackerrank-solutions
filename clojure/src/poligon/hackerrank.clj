@@ -1,10 +1,17 @@
 (ns poligon.hackerrank)
 
 (defn do-lines
-  "Read number of input lines N and reads executes function F N times."
+  "Read number of input lines N and executes function F N times."
   [f]
   (dotimes [i (Integer/parseInt (read-line))]
     (println (f (.split (read-line) " ")))))
+
+(defn do-lines-long
+  "Read whole input and executes function F on lines from 2nd to the end."
+  [f]
+  (let [lines (seq (.split (slurp *in*) "\n"))]
+    (doseq [line (rest lines)]
+      (println (f (Long/parseLong line))))))
 
 (defn solve-me-second
   "Solution to https://www.hackerrank.com/challenges/solve-me-second"
