@@ -1,6 +1,6 @@
 (ns poligon.hackerrank)
 
-(defn do-lines
+(defn do-lines-string
   "Read number of input lines N and executes function F N times."
   [f]
   (dotimes [i (Integer/parseInt (read-line))]
@@ -32,22 +32,16 @@
                   [0 0] (first ar))))
 
 (defn utopian-tree-size
+  "Utopian tree grows in monsoon season * 2, and in summer by +1 meter.
+Starts with 1 meter, before monsoon. How many meters will it have after
+given number of seasons.
+See https://www.hackerrank.com/challenges/utopian-tree"
   ([seasons] (utopian-tree-size seasons 1))
   ([seasons meters]
      (if (> seasons 0)
        (recur (dec seasons)
               (if (even? meters) (inc meters) (* meters 2)))
        meters)))
-
-(defn utopian-tree
-  "Utopian tree grows in monsoon season * 2, and in summer by +1 meter.
-Starts with 1 meter, before monsoon. How many meters will it have after
-given number of seasons.
-See https://www.hackerrank.com/challenges/utopian-tree"
-  []
-  (let [lines (seq (.split (slurp *in*) "\n"))]
-    (doseq [line (rest lines)]
-      (println (utopian-tree-size (Integer/parseInt line))))))
 
 (defn game-of-thrones
   "Check if given string can be turned into palindrome.
@@ -65,12 +59,6 @@ See https://www.hackerrank.com/challenges/is-fibo"
           (= current n) "IsFibo"
           (< n current) "IsNotFibo"
           :else (recur current (+ prev current)))))
-
-(defn is-fibo-runner
-  []
-  (let [lines (seq (.split (slurp *in*) "\n"))]
-    (doseq [line (rest lines)]
-      (println (is-fibo (Long/parseLong line))))))
 
 (defn flipping-bits
   "Return a number resulting from flipping bits.
