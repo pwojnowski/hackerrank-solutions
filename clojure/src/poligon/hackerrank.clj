@@ -68,3 +68,14 @@ See https://www.hackerrank.com/challenges/flipping-bits"
     (if (= i 32)
       x
       (recur (inc i) (bit-flip x i)))))
+
+(defn maximizing-xor
+  "Find maximal XOR value.
+See https://www.hackerrank.com/challenges/maximizing-xor"
+  ([] (println
+       (maximizing-xor (Integer/parseInt (read-line))
+                       (Integer/parseInt (read-line)))))
+  ([a b]
+   (apply max
+          (for [i (range a (inc b)) j (range i (inc b))]
+            (bit-xor i j)))))

@@ -62,3 +62,9 @@
          2147483648 (flipping-bits 2147483647)
          4294967294 (flipping-bits 1)
          4294967295 (flipping-bits 0))))
+
+(deftest maximizing-xor-test
+  (are [expected actual] (= expected actual)
+       0 (maximizing-xor 10 10)
+       7 (maximizing-xor 10 15)
+       15 (maximizing-xor 1 10)))
