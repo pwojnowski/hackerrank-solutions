@@ -71,3 +71,12 @@ See https://www.hackerrank.com/challenges/is-fibo"
   (let [lines (seq (.split (slurp *in*) "\n"))]
     (doseq [line (rest lines)]
       (println (is-fibo (Long/parseLong line))))))
+
+(defn flipping-bits
+  "Return a number resulting from flipping bits.
+See https://www.hackerrank.com/challenges/flipping-bits"
+  [x]
+  (loop [i 0 x x]
+    (if (= i 32)
+      x
+      (recur (inc i) (bit-flip x i)))))

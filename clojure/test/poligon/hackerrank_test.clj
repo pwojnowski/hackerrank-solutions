@@ -55,3 +55,10 @@
          0 (alternating-characters ["ABABABAB"])
          0 (alternating-characters ["BABABA"])
          4 (alternating-characters ["AAABBB"]))))
+
+(deftest flipping-bits-test
+  (testing "Flip bits on unsigned number"
+    (are [expected actual] (= expected actual)
+         2147483648 (flipping-bits 2147483647)
+         4294967294 (flipping-bits 1)
+         4294967295 (flipping-bits 0))))
