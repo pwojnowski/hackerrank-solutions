@@ -79,3 +79,21 @@ See https://www.hackerrank.com/challenges/maximizing-xor"
    (apply max
           (for [i (range a (inc b)) j (range i (inc b))]
             (bit-xor i j)))))
+
+(defn angry-professor
+  "Will angry professor cancell the class?
+See https://www.hackerrank.com/challenges/angry-professor"
+  ([] (angry-professor (slurp *in*)))
+  ([s] (let [lines (seq (.split s "\n"))
+             cases (rest lines)]
+         (loop [cases cases]
+           (when (seq cases)
+             (let [[_ min-students] (clojure.string/split (first cases) #" ")
+                   tseq (map #(Integer/parseInt %)
+                             (clojure.string/split (second cases) #" "))]
+               (println (angry-professor (Integer/parseInt min-students) tseq))
+               (recur (drop 2 cases)))))))
+  ([min-required tseq]
+   (if (<= min-required (count (filter (complement pos?) tseq)))
+     "NO"
+     "YES")))

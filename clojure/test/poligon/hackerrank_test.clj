@@ -68,3 +68,8 @@
        0 (maximizing-xor 10 10)
        7 (maximizing-xor 10 15)
        15 (maximizing-xor 1 10)))
+
+(deftest angry-professor-test
+  (are [expected actual] (= expected actual)
+       "YES" (angry-professor 3 [-1 -3 4 2])
+       "NO" (angry-professor 2 [0 -1 2 1])))
