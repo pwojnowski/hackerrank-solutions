@@ -2,15 +2,23 @@
   (:require [clojure.test :refer :all]
             [poligon.hackerrank :refer :all]))
 
+(deftest filter-array-test
+  (testing "Should return a list with numbers lower that given one."
+    (is (= [2 1 0] (filter-array 3 [3 10 9 8 2 7 5 1 3 0])))))
+
+(deftest reverse-a-list-test
+  (testing "Reverse a list."
+    (is (= '(2 1 0) (reverse-a-list '(0 1 2))))))
+
 (deftest utopian-tree-size-test
   (testing "Size of utopian tree after given number of seasons"
     (are [x y] (= x y)
-         1 (utopian-tree-size 0)       ; starts with 1 meter
-         2 (utopian-tree-size 1)       ; monsoon season = size * 2
-         3 (utopian-tree-size 2)       ; m + s
-         6 (utopian-tree-size 3)       ; m + s + m
-         7 (utopian-tree-size 4)       ; m + s + m + s
-         14 (utopian-tree-size 5))))   ; m + s + m + s + m
+      1 (utopian-tree-size 0)       ; starts with 1 meter
+      2 (utopian-tree-size 1)       ; monsoon season = size * 2
+      3 (utopian-tree-size 2)       ; m + s
+      6 (utopian-tree-size 3)       ; m + s + m
+      7 (utopian-tree-size 4)       ; m + s + m + s
+      14 (utopian-tree-size 5))))   ; m + s + m + s + m
 
 (deftest game-of-thrones-test
   (testing "Can create a palindrome from a string"

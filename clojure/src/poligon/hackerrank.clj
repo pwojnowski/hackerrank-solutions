@@ -1,5 +1,34 @@
 (ns poligon.hackerrank)
 
+(defn solve-me-first
+  "Solution to https://www.hackerrank.com/challenges/fp-solve-me-first"
+  []
+  (println (+ (Integer/parseInt (read-line))
+              (Integer/parseInt (read-line)))))
+
+;; Solution to "Hello World N Times":
+;; (fn [n] (dotimes [_ n] (println "Hello World")))
+
+;; Solution to "List Replication"
+;; https://www.hackerrank.com/challenges/fp-list-replication
+;; (mapcat #(repeat num %) lst)
+
+;; Solution to "Filter Array"
+;; https://www.hackerrank.com/challenges/fp-filter-array
+(defn filter-array [n nums]
+  (reduce #(if (< %2 n) (conj % %2) %) [] nums))
+
+;; https://www.hackerrank.com/challenges/fp-reverse-a-list
+(defn reverse-a-list
+  [lst]
+  (reduce conj '() lst))
+
+;; https://www.hackerrank.com/challenges/fp-list-length
+;; (fn [lst] (reduce (fn [n _] (inc n)) 0 lst))
+
+;; Update list:
+;; (fn [nums] (map #(Math/abs %) nums))
+
 (defn do-lines-string
   "Read number of input lines N and executes function F N times."
   [f]
@@ -9,9 +38,19 @@
 (defn do-lines-long
   "Read whole input and executes function F on lines from 2nd to the end."
   [f]
-  (let [lines (seq (.split (slurp *in*) "\n"))]
+  (let [i (Integer/parseInt (read-line))]
+    (reduce #(conj % (f %2)) [] )
     (doseq [line (rest lines)]
       (println (f (Long/parseLong line))))))
+
+;; (for [i (range (Integer/parseInt (read-line)))
+;;       x (Double/parseDouble (read-line))])
+
+(defn read-input
+  "Read whole input and executes function F on lines from 2nd to the end."
+  [f]
+  (let [lines (seq (.split (slurp *in*) "\n"))]
+    (map f (rest lines))))
 
 (defn solve-me-second
   "Solution to https://www.hackerrank.com/challenges/solve-me-second"
@@ -21,7 +60,7 @@
 (defn lonely-integer
   "Solution to https://www.hackerrank.com/challenges/lonely-integer"
   [nums]
-  (first (first (filter #(= (val %) 1) (frequencies nums)))))
+  (ffirst (filter #(= (val %) 1) (frequencies nums))))
 
 (defn alternating-characters
   "Solution to https://www.hackerrank.com/challenges/alternating-characters"
