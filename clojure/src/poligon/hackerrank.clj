@@ -72,26 +72,26 @@
 
 (defn utopian-tree-size
   "Utopian tree grows in monsoon season * 2, and in summer by +1 meter.
-Starts with 1 meter, before monsoon. How many meters will it have after
-given number of seasons.
-See https://www.hackerrank.com/challenges/utopian-tree"
+  Starts with 1 meter, before monsoon. How many meters will it have after
+  given number of seasons.
+  See https://www.hackerrank.com/challenges/utopian-tree"
   ([seasons] (utopian-tree-size seasons 1))
   ([seasons meters]
-     (if (> seasons 0)
-       (recur (dec seasons)
-              (if (even? meters) (inc meters) (* meters 2)))
-       meters)))
+   (if (> seasons 0)
+     (recur (dec seasons)
+            (if (even? meters) (inc meters) (* meters 2)))
+     meters)))
 
 (defn game-of-thrones
   "Check if given string can be turned into palindrome.
-See https://www.hackerrank.com/challenges/game-of-thrones."
+  See https://www.hackerrank.com/challenges/game-of-thrones."
   [s]
   (if (> 2 (count (filter #(odd? (val %)) (frequencies s))))
     "YES" "NO"))
 
 (defn is-fibo
   "Determine if `n' is an element of the Fibonacci Sequence.
-See https://www.hackerrank.com/challenges/is-fibo"
+  See https://www.hackerrank.com/challenges/is-fibo"
   [n]
   (loop [prev 2 current 3]
     (cond (<= n 3) "IsFibo"
@@ -101,7 +101,7 @@ See https://www.hackerrank.com/challenges/is-fibo"
 
 (defn flipping-bits
   "Return a number resulting from flipping bits.
-See https://www.hackerrank.com/challenges/flipping-bits"
+  See https://www.hackerrank.com/challenges/flipping-bits"
   [x]
   (loop [i 0 x x]
     (if (= i 32)
@@ -110,7 +110,7 @@ See https://www.hackerrank.com/challenges/flipping-bits"
 
 (defn maximizing-xor
   "Find maximal XOR value.
-See https://www.hackerrank.com/challenges/maximizing-xor"
+  See https://www.hackerrank.com/challenges/maximizing-xor"
   ([] (println
        (maximizing-xor (Integer/parseInt (read-line))
                        (Integer/parseInt (read-line)))))
@@ -121,7 +121,7 @@ See https://www.hackerrank.com/challenges/maximizing-xor"
 
 (defn angry-professor
   "Will angry professor cancell the class?
-See https://www.hackerrank.com/challenges/angry-professor"
+  See https://www.hackerrank.com/challenges/angry-professor"
   ([] (angry-professor (slurp *in*)))
   ([s] (let [lines (seq (.split s "\n"))
              cases (rest lines)]
@@ -136,3 +136,13 @@ See https://www.hackerrank.com/challenges/angry-professor"
    (if (<= min-required (count (filter (complement pos?) tseq)))
      "NO"
      "YES")))
+
+(defn pangrams [s]
+  "Solution to https://www.hackerrank.com/challenges/pangrams"
+  (let [n (->> (.toLowerCase (read-line))
+               (filter #(Character/isLowerCase %))
+               (into #{})
+               (count))]
+    (if (= 26 n)
+      (println "pangram")
+      (println "not pangram"))))
