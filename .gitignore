@@ -1,3 +1,6 @@
 /clojure/.lein-failures
 /clojure/target/
 /clojure/.nrepl-port
+/java/.idea
+/java/hackerrank.iml
+/java/target
