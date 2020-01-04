@@ -9,6 +9,16 @@ class GraphTest {
     private val emptyGraph = Graph.createAdjList(0)
     private val only42Vertices = Graph.createAdjList(42)
     private val graphWithAnomalies = graphWithAnomalies()
+    private val anomaliesAsString = """
+    |3
+    |5
+    |0 0
+    |0 1
+    |0 2
+    |1 2
+    |1 2
+    |
+""".trimMargin()
 
     @Test
     fun shouldReturnNumberOfVertices() {
@@ -28,18 +38,7 @@ class GraphTest {
         // 0 vertices, 0 edges
         assertEquals("0\n0\n", emptyGraph.toString())
         assertEquals("42\n0\n", only42Vertices.toString())
-
-        val expected = """
-    |3
-    |5
-    |0 -> 0
-    |0 -> 1
-    |0 -> 2
-    |1 -> 2
-    |1 -> 2
-    |
-""".trimMargin()
-        assertEquals(expected, graphWithAnomalies.toString())
+        assertEquals(anomaliesAsString, graphWithAnomalies.toString())
     }
 
     private fun graphWithAnomalies(): Graph {

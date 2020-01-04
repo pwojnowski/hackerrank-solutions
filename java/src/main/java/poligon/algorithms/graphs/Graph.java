@@ -45,7 +45,7 @@ public class Graph {
         StringBuilder sb = new StringBuilder(vertices() + System.lineSeparator() + edges() + System.lineSeparator());
         for (int v = 0; v < vertices.length; ++v) {
             for (Integer w : adj(v)) {
-                sb.append(v).append(" -> ").append(w).append(System.lineSeparator());
+                sb.append(v).append(" ").append(w).append(System.lineSeparator());
             }
         }
         return sb.toString();
