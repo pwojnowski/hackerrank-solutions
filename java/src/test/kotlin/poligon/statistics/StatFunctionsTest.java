@@ -1,11 +1,11 @@
 package poligon.statistics;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static poligon.statistics.StatFunctions.*;
-import static org.junit.Assert.*;
 
 public class StatFunctionsTest {
 
