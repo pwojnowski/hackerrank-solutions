@@ -34,6 +34,15 @@ class GraphTest {
     }
 
     @Test
+    fun shouldLoadGraphFromInputStream() {
+        val ins = anomaliesAsString.byteInputStream()
+
+        val g = Graph.createAdjList(ins)
+
+        assertEquals(graphWithAnomalies, g)
+    }
+
+    @Test
     fun shouldReturnGraphAsString() {
         // 0 vertices, 0 edges
         assertEquals("0\n0\n", emptyGraph.toString())

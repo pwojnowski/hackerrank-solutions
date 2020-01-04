@@ -1,9 +1,7 @@
 package poligon.algorithms.graphs;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.InputStream;
+import java.util.*;
 
 public class Graph {
 
@@ -20,6 +18,17 @@ public class Graph {
             g.vertices[i] = new LinkedList<>();
         }
         return g;
+    }
+
+    public static Graph createAdjList(InputStream ins) {
+        try (Scanner scanner = new Scanner(ins)) {
+            Graph g = createAdjList(scanner.nextInt());
+            int e = scanner.nextInt();
+            while (e-- > 0) {
+                g.addEdge(scanner.nextInt(), scanner.nextInt());
+            }
+            return g;
+        }
     }
 
     public int vertices() {
@@ -51,4 +60,16 @@ public class Graph {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Graph graph = (Graph) o;
+        return Arrays.equals(vertices, graph.vertices);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(vertices);
+    }
 }
