@@ -8,15 +8,26 @@ class GraphTest {
 
     private val emptyGraph = Graph.createAdjList(0)
     private val only42Vertices = Graph.createAdjList(42)
-    private val graphWithAnomalies = graphWithAnomalies()
+    private val graphWithAnomalies = Graph.createAdjList(3)
+        .apply {
+            addEdge(0, 0) // adjacency list allows self loops
+            addEdge(0, 1)
+            addEdge(0, 2)
+            addEdge(1, 2)
+            addEdge(1, 2) // adjacency list allows parallel edges
+        }
     private val anomaliesAsString = """
     |3
-    |5
+    |9
     |0 0
     |0 1
     |0 2
+    |1 0
     |1 2
     |1 2
+    |2 0
+    |2 1
+    |2 1
     |
 """.trimMargin()
 
@@ -29,13 +40,22 @@ class GraphTest {
     @Test
     fun shouldReturnEdgesAdjacentToVertex() {
         assertEquals(listOf(0, 1, 2), graphWithAnomalies.adj(0))
-        assertEquals(listOf(2, 2), graphWithAnomalies.adj(1))
-        assertEquals(emptyList<Int>(), graphWithAnomalies.adj(2))
+        assertEquals(listOf(0, 2, 2), graphWithAnomalies.adj(1))
+        assertEquals(listOf(0, 1, 1), graphWithAnomalies.adj(2))
     }
 
     @Test
     fun shouldLoadGraphFromInputStream() {
-        val ins = anomaliesAsString.byteInputStream()
+        val ins = """
+    |3
+    |5
+    |0 0
+    |0 1
+    |0 2
+    |1 2
+    |1 2
+    |
+""".trimMargin().byteInputStream()
 
         val g = Graph.createAdjList(ins)
 
@@ -48,17 +68,6 @@ class GraphTest {
         assertEquals("0\n0\n", emptyGraph.toString())
         assertEquals("42\n0\n", only42Vertices.toString())
         assertEquals(anomaliesAsString, graphWithAnomalies.toString())
-    }
-
-    private fun graphWithAnomalies(): Graph {
-        return Graph.createAdjList(3)
-            .apply {
-                addEdge(0, 0) // adjacency list allows self loops
-                addEdge(0, 1)
-                addEdge(0, 2)
-                addEdge(1, 2)
-                addEdge(1, 2) // adjacency list allows parallel edges
-            }
     }
 
 }

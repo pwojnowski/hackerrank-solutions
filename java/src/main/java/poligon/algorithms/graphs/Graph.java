@@ -47,6 +47,9 @@ public class Graph {
     // Add edge(s) between v and w
     public void addEdge(int v, int w) {
         vertices[v].add(w);
+        if (v != w) {
+            vertices[w].add(v);
+        }
     }
 
     @Override
