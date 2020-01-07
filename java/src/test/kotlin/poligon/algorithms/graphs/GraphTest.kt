@@ -1,8 +1,8 @@
 package poligon.algorithms.graphs
 
-import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.Test
 
 class GraphTest {
 
@@ -38,6 +38,13 @@ class GraphTest {
     }
 
     @Test
+    fun shouldReturnNumberOfEdges() {
+        assertEquals(emptyGraph.edges(), 0)
+        assertEquals(only42Vertices.edges(), 0)
+        assertEquals(graphWithAnomalies.edges(), 5)
+    }
+
+    @Test
     fun shouldReturnEdgesAdjacentToVertex() {
         assertEquals(listOf(0, 1, 2), graphWithAnomalies.adj(0))
         assertEquals(listOf(0, 2, 2), graphWithAnomalies.adj(1))
@@ -63,6 +70,7 @@ class GraphTest {
     }
 
     @Test
+    @Disabled
     fun shouldReturnGraphAsString() {
         // 0 vertices, 0 edges
         assertEquals("0\n0\n", emptyGraph.toString())

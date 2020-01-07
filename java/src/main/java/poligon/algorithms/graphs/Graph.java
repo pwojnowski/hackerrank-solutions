@@ -6,6 +6,7 @@ import java.util.*;
 public class Graph {
 
     private final Collection<Integer>[] vertices;
+    private int edgeCount;
 
     private Graph(Collection<Integer>[] vertices) {
         this.vertices = vertices;
@@ -36,7 +37,7 @@ public class Graph {
     }
 
     public int edges() {
-        return Arrays.stream(vertices).mapToInt(Collection::size).sum();
+        return edgeCount;
     }
 
     // Returns vertices adjacent to given
@@ -50,6 +51,7 @@ public class Graph {
         if (v != w) {
             vertices[w].add(v);
         }
+        ++edgeCount;
     }
 
     @Override
