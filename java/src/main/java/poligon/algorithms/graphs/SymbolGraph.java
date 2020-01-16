@@ -1,6 +1,8 @@
 package poligon.algorithms.graphs;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -21,6 +23,14 @@ public class SymbolGraph {
         String[] index = new String[symbolsMap.size()];
         symbolsMap.forEach((name, i) -> index[i] = name);
         return index;
+    }
+
+    public static SymbolGraph load(String input, String separator) {
+        InputStream is = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+        Map<String, Integer> symbolsMap = createSymbolsMap(is, separator);
+        is = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+        Graph graph = createGraph(is, separator, symbolsMap);
+        return new SymbolGraph(symbolsMap, graph);
     }
 
     public static SymbolGraph load(InputStream is, String separator) {
@@ -51,7 +61,8 @@ public class SymbolGraph {
         Graph graph = Graph.createAdjList(symbolsMap.size());
         Scanner scanner = createScanner(is, separator);
         while (scanner.hasNext()) {
-            graph.addEdge(symbolsMap.get(scanner.next()), symbolsMap.get(scanner.next()));
+            String[] parts = scanner.nextLine().split(separator);
+            graph.addEdge(symbolsMap.get(parts[0]), symbolsMap.get(parts[1]));
         }
         return graph;
     }

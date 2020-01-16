@@ -19,9 +19,7 @@ class SymbolGraphTest {
 
     @Test
     fun shouldLoadGraphFromInputStream() {
-        val ins = flights.byteInputStream()
-
-        val sg = SymbolGraph.load(ins, " ")
+        val sg = SymbolGraph.load(flights, " ")
 
         assertTrue(sg.contains("krk"))
         assertTrue(sg.contains("waw"))
@@ -47,6 +45,18 @@ class SymbolGraphTest {
         assertEquals("dfw", sg.name(5))
         assertEquals("lax", sg.name(6))
 
+        val expectedGraph = Graph.createAdjList(7).apply {
+            addEdge(sg.index("krk"), sg.index("waw"))
+            addEdge(sg.index("krk"), sg.index("gda"))
+            addEdge(sg.index("krk"), sg.index("psg"))
+            addEdge(sg.index("psg"), sg.index("jfk"))
+            addEdge(sg.index("psg"), sg.index("dfw"))
+            addEdge(sg.index("dfw"), sg.index("jfk"))
+            addEdge(sg.index("dfw"), sg.index("lax"))
+            addEdge(sg.index("jfk"), sg.index("lax"))
+            addEdge(sg.index("waw"), sg.index("psg"))
+        }
+        assertEquals(expectedGraph, sg.graph())
     }
 
 }
