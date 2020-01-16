@@ -48,7 +48,7 @@ public class Graph {
     // Add edge(s) between v and w
     public void addEdge(int v, int w) {
         vertices[v].add(w);
-        if (v != w) {
+        if (v != w) { // add self-loop only once
             vertices[w].add(v);
         }
         ++edgeCount;
@@ -58,8 +58,9 @@ public class Graph {
     public String toString() {
         StringBuilder sb = new StringBuilder(vertices() + System.lineSeparator() + edges() + System.lineSeparator());
         for (int v = 0; v < vertices.length; ++v) {
-            for (Integer w : adj(v)) {
-                sb.append(v).append(" ").append(w).append(System.lineSeparator());
+            for (int w : adj(v)) {
+                if (v <= w)
+                    sb.append(v).append(" ").append(w).append(System.lineSeparator());
             }
         }
         return sb.toString();
