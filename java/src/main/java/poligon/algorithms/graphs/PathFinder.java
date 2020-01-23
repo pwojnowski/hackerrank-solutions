@@ -16,6 +16,12 @@ public class PathFinder {
         edgeTo = new int[graph.vertices()];
     }
 
+    public static PathFinder iterativeDfs(Graph graph, int startVertex) {
+        PathFinder finder = new PathFinder(graph, startVertex);
+        finder.iterativeDfs();
+        return finder;
+    }
+
     /**
      * Create PathFinder with paths found using DFS algorithm.
      */
@@ -32,7 +38,14 @@ public class PathFinder {
     }
 
     private void bfs() {
-        Queue<Integer> vertices = new LinkedList<>();
+        iterativeSearch(new LinkedList<>());
+    }
+
+    private void iterativeDfs() {
+        iterativeSearch(Collections.asLifoQueue(new LinkedList<>()));
+    }
+
+    private void iterativeSearch(Queue<Integer> vertices) {
         vertices.add(startVertex);
 
         while (!vertices.isEmpty()) {

@@ -8,12 +8,12 @@ class PathFinderTest {
 
     private val connections = """
             krk waw
+            krk kos
             waw gda
             waw szy
             krk wro
             wro poz
             poz kos
-            krk kos
         """.trimIndent()
 
     private val sg = SymbolGraph.load(connections, " ")
@@ -27,6 +27,18 @@ class PathFinderTest {
     @Test
     fun shouldFindPathUsingRecursiveDFS() {
         val finder = PathFinder.recursiveDfs(sg.graph(), krkIdx)
+
+        assertTrue(finder.hasPathTo(wawIdx))
+        assertTrue(finder.hasPathTo(gdaIdx))
+        assertTrue(finder.hasPathTo(szyIdx))
+
+        assertEquals(listOf(krkIdx, wawIdx), finder.pathTo(wawIdx))
+        assertEquals(listOf(krkIdx, wawIdx, szyIdx), finder.pathTo(szyIdx))
+    }
+
+    @Test
+    fun shouldFindPathUsingIterativeDFS() {
+        val finder = PathFinder.iterativeDfs(sg.graph(), krkIdx)
 
         assertTrue(finder.hasPathTo(wawIdx))
         assertTrue(finder.hasPathTo(gdaIdx))
