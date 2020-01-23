@@ -21,16 +21,16 @@ public class PathFinder {
      */
     public static PathFinder deepSearch(Graph graph, int startVertex) {
         PathFinder finder = new PathFinder(graph, startVertex);
-        finder.dfs(startVertex);
+        finder.recursiveDfs(startVertex);
         return finder;
     }
 
-    private void dfs(int v) {
+    private void recursiveDfs(int v) {
         marked[v] = true;
         for (int w : graph.adj(v)) {
             if (!marked[w]) {
                 edgeTo[w] = v;
-                dfs(w);
+                recursiveDfs(w);
             }
         }
     }
