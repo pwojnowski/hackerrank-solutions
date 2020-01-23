@@ -26,7 +26,7 @@ class PathFinderTest {
 
     @Test
     fun shouldFindPathUsingRecursiveDFS() {
-        val finder = PathFinder.deepSearch(sg.graph(), krkIdx)
+        val finder = PathFinder.recursiveDfs(sg.graph(), krkIdx)
 
         assertTrue(finder.hasPathTo(wawIdx))
         assertTrue(finder.hasPathTo(gdaIdx))

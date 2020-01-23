@@ -19,7 +19,7 @@ public class PathFinder {
     /**
      * Create PathFinder with paths found using DFS algorithm.
      */
-    public static PathFinder deepSearch(Graph graph, int startVertex) {
+    public static PathFinder recursiveDfs(Graph graph, int startVertex) {
         PathFinder finder = new PathFinder(graph, startVertex);
         finder.recursiveDfs(startVertex);
         return finder;
