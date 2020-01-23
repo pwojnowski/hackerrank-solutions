@@ -20,7 +20,7 @@ class PathFinderTest {
     private val szyIdx = sg.index("szy")
 
     @Test
-    fun shouldFindSinglePath() {
+    fun shouldFindPathUsingRecursiveDFS() {
         val finder = PathFinder.deepSearch(sg.graph(), krkIdx)
 
         assertTrue(finder.hasPathTo(wawIdx))
