@@ -20,7 +20,7 @@ class PathFinderTest {
         val gda_idx = sg.index("gda")
         val szy_idx = sg.index("szy")
 
-        val finder = PathFinder(sg.graph(), krk_idx)
+        val finder = PathFinder.deepSearch(sg.graph(), krk_idx)
 
         assertTrue(finder.hasPathTo(waw_idx))
         assertTrue(finder.hasPathTo(gda_idx))

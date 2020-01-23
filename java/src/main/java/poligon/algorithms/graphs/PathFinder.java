@@ -14,8 +14,15 @@ public class PathFinder {
         this.startVertex = startVertex;
         marked = new boolean[graph.vertices()];
         edgeTo = new int[graph.vertices()];
+    }
 
-        dfs(startVertex);
+    /**
+     * Create PathFinder with paths found using DFS algorithm.
+     */
+    public static PathFinder deepSearch(Graph graph, int startVertex) {
+        PathFinder finder = new PathFinder(graph, startVertex);
+        finder.dfs(startVertex);
+        return finder;
     }
 
     private void dfs(int v) {
