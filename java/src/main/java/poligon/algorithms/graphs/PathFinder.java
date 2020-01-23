@@ -25,6 +25,30 @@ public class PathFinder {
         return finder;
     }
 
+    public static PathFinder bfs(Graph graph, int startVertex) {
+        PathFinder finder = new PathFinder(graph, startVertex);
+        finder.bfs();
+        return finder;
+    }
+
+    private void bfs() {
+        Queue<Integer> vertices = new LinkedList<>();
+        vertices.add(startVertex);
+
+        while (!vertices.isEmpty()) {
+            int v = vertices.remove();
+            if (!marked[v]) {
+                marked[v] = true;
+                for (int adj : graph.adj(v)) {
+                    if (!marked[adj]) {
+                        edgeTo[adj] = v;
+                        vertices.add(adj);
+                    }
+                }
+            }
+        }
+    }
+
     private void recursiveDfs(int v) {
         marked[v] = true;
         for (int w : graph.adj(v)) {

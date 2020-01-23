@@ -30,4 +30,17 @@ class PathFinderTest {
         assertEquals(listOf(krkIdx, wawIdx), finder.pathTo(wawIdx))
         assertEquals(listOf(krkIdx, wawIdx, szyIdx), finder.pathTo(szyIdx))
     }
+
+    @Test
+    fun shouldFindPathUsingBFS() {
+        val finder = PathFinder.bfs(sg.graph(), krkIdx)
+
+        assertTrue(finder.hasPathTo(wawIdx))
+        assertTrue(finder.hasPathTo(gdaIdx))
+        assertTrue(finder.hasPathTo(szyIdx))
+
+        assertEquals(listOf(krkIdx, wawIdx), finder.pathTo(wawIdx))
+        assertEquals(listOf(krkIdx, wawIdx, szyIdx), finder.pathTo(szyIdx))
+    }
+
 }
