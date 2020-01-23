@@ -6,27 +6,28 @@ import org.junit.jupiter.api.Test
 
 class PathFinderTest {
 
-    @Test
-    fun shouldFindSinglePath() {
-        val connections = """
+    private val connections = """
             krk waw
             waw gda
             waw szy
         """.trimIndent()
 
-        val sg = SymbolGraph.load(connections, " ")
-        val krk_idx = sg.index("krk")
-        val waw_idx = sg.index("waw")
-        val gda_idx = sg.index("gda")
-        val szy_idx = sg.index("szy")
+    private val sg = SymbolGraph.load(connections, " ")
 
-        val finder = PathFinder.deepSearch(sg.graph(), krk_idx)
+    private val krkIdx = sg.index("krk")
+    private val wawIdx = sg.index("waw")
+    private val gdaIdx = sg.index("gda")
+    private val szyIdx = sg.index("szy")
 
-        assertTrue(finder.hasPathTo(waw_idx))
-        assertTrue(finder.hasPathTo(gda_idx))
-        assertTrue(finder.hasPathTo(szy_idx))
+    @Test
+    fun shouldFindSinglePath() {
+        val finder = PathFinder.deepSearch(sg.graph(), krkIdx)
 
-        assertEquals(listOf(krk_idx, waw_idx), finder.pathTo(waw_idx))
-        assertEquals(listOf(krk_idx, waw_idx, szy_idx), finder.pathTo(szy_idx))
+        assertTrue(finder.hasPathTo(wawIdx))
+        assertTrue(finder.hasPathTo(gdaIdx))
+        assertTrue(finder.hasPathTo(szyIdx))
+
+        assertEquals(listOf(krkIdx, wawIdx), finder.pathTo(wawIdx))
+        assertEquals(listOf(krkIdx, wawIdx, szyIdx), finder.pathTo(szyIdx))
     }
 }
