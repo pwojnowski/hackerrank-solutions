@@ -9,7 +9,7 @@ public class PathFinder {
     private final int[] edgeTo;
     private final int startVertex;
 
-    public PathFinder(Graph graph, int startVertex) {
+    private PathFinder(Graph graph, int startVertex) {
         this.graph = graph;
         this.startVertex = startVertex;
         marked = new boolean[graph.vertices()];
