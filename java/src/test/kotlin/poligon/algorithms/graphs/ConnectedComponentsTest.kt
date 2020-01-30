@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class ConnectedComponentsTest {
 
-    private val graphWith3Components = GraphAdjacencyLists.createAdjList(11)
+    private val graphWith3Components = GraphAdjacencyLists.create(11)
         .apply {
             addEdge(0, 1)
             addEdge(0, 2)

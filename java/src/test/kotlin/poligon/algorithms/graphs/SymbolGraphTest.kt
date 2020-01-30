@@ -45,7 +45,7 @@ class SymbolGraphTest {
         assertEquals("dfw", sg.name(5))
         assertEquals("lax", sg.name(6))
 
-        val expectedGraph = GraphAdjacencyLists.createAdjList(7).apply {
+        val expectedGraph = GraphAdjacencyLists.create(7).apply {
             addEdge(sg.index("krk"), sg.index("waw"))
             addEdge(sg.index("krk"), sg.index("gda"))
             addEdge(sg.index("krk"), sg.index("psg"))

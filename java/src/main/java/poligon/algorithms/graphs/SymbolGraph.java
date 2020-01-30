@@ -58,7 +58,7 @@ public class SymbolGraph {
     }
 
     private static Graph createGraph(InputStream is, String separator, Map<String, Integer> symbolsMap) {
-        Graph graph = GraphAdjacencyLists.createAdjList(symbolsMap.size());
+        Graph graph = GraphAdjacencyLists.create(symbolsMap.size());
         Scanner scanner = createScanner(is, separator);
         while (scanner.hasNext()) {
             String[] parts = scanner.nextLine().split(separator);

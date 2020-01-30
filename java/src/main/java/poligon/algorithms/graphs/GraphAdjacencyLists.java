@@ -12,7 +12,7 @@ public class GraphAdjacencyLists implements Graph {
         this.vertices = vertices;
     }
 
-    public static Graph createAdjList(int v) {
+    public static Graph create(int v) {
         @SuppressWarnings("unchecked")
         GraphAdjacencyLists g = new GraphAdjacencyLists(new List[v]);
         for (int i = 0; i < g.vertices.length; ++i) {
@@ -21,9 +21,9 @@ public class GraphAdjacencyLists implements Graph {
         return g;
     }
 
-    public static Graph createAdjList(InputStream ins) {
+    public static Graph create(InputStream ins) {
         try (Scanner scanner = new Scanner(ins)) {
-            Graph g = createAdjList(scanner.nextInt());
+            Graph g = create(scanner.nextInt());
             int e = scanner.nextInt();
             while (e-- > 0) {
                 g.addEdge(scanner.nextInt(), scanner.nextInt());

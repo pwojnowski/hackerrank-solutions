@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test
 
 class GraphAdjacencyListsTest {
 
-    private val emptyGraph = GraphAdjacencyLists.createAdjList(0)
-    private val only42Vertices = GraphAdjacencyLists.createAdjList(42)
-    private val graphWithAnomalies = GraphAdjacencyLists.createAdjList(3)
+    private val emptyGraph = GraphAdjacencyLists.create(0)
+    private val only42Vertices = GraphAdjacencyLists.create(42)
+    private val graphWithAnomalies = GraphAdjacencyLists.create(3)
         .apply {
             addEdge(0, 0) // adjacency list allows self loops
             addEdge(0, 1)
@@ -50,7 +50,7 @@ class GraphAdjacencyListsTest {
     |
 """.trimMargin().byteInputStream()
 
-        val g = GraphAdjacencyLists.createAdjList(ins)
+        val g = GraphAdjacencyLists.create(ins)
 
         assertEquals(graphWithAnomalies, g)
     }
@@ -58,7 +58,7 @@ class GraphAdjacencyListsTest {
     @Test
     fun shouldReturnGraphAsString() {
         listOf(emptyGraph, only42Vertices, graphWithAnomalies).forEach { graph ->
-            assertEquals(graph, GraphAdjacencyLists.createAdjList(graph.toString().byteInputStream()))
+            assertEquals(graph, GraphAdjacencyLists.create(graph.toString().byteInputStream()))
         }
     }
 
