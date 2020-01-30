@@ -1,6 +1,6 @@
-package poligon.algorithms.graphs;
+package poligon.algorithms.graphs
 
-import org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class SymbolGraphTest {
@@ -45,7 +45,7 @@ class SymbolGraphTest {
         assertEquals("dfw", sg.name(5))
         assertEquals("lax", sg.name(6))
 
-        val expectedGraph = Graph.createAdjList(7).apply {
+        val expectedGraph = GraphAdjacencyLists.createAdjList(7).apply {
             addEdge(sg.index("krk"), sg.index("waw"))
             addEdge(sg.index("krk"), sg.index("gda"))
             addEdge(sg.index("krk"), sg.index("psg"))

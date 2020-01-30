@@ -3,11 +3,11 @@ package poligon.algorithms.graphs
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class GraphTest {
+class GraphAdjacencyListsTest {
 
-    private val emptyGraph = Graph.createAdjList(0)
-    private val only42Vertices = Graph.createAdjList(42)
-    private val graphWithAnomalies = Graph.createAdjList(3)
+    private val emptyGraph = GraphAdjacencyLists.createAdjList(0)
+    private val only42Vertices = GraphAdjacencyLists.createAdjList(42)
+    private val graphWithAnomalies = GraphAdjacencyLists.createAdjList(3)
         .apply {
             addEdge(0, 0) // adjacency list allows self loops
             addEdge(0, 1)
@@ -50,7 +50,7 @@ class GraphTest {
     |
 """.trimMargin().byteInputStream()
 
-        val g = Graph.createAdjList(ins)
+        val g = GraphAdjacencyLists.createAdjList(ins)
 
         assertEquals(graphWithAnomalies, g)
     }
@@ -58,7 +58,7 @@ class GraphTest {
     @Test
     fun shouldReturnGraphAsString() {
         listOf(emptyGraph, only42Vertices, graphWithAnomalies).forEach { graph ->
-            assertEquals(graph, Graph.createAdjList(graph.toString().byteInputStream()))
+            assertEquals(graph, GraphAdjacencyLists.createAdjList(graph.toString().byteInputStream()))
         }
     }
 
