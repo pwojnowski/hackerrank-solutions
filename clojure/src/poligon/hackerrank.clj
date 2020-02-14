@@ -146,3 +146,15 @@
     (if (= 26 n)
       (println "pangram")
       (println "not pangram"))))
+
+(defn- valleys-counter [[n level] step]
+  (let [step-val (if (= step \D) -1 1)
+        level (+ level step-val)]
+    (if (= level step-val -1)
+      [(inc n) level]
+      [n level])))
+
+(defn count-valleys
+  "Solution to https://www.hackerrank.com/challenges/counting-valleys"
+  [s]
+  (first (reduce valleys-counter [0 0] s)))

@@ -79,5 +79,12 @@
 
 (deftest angry-professor-test
   (are [expected actual] (= expected actual)
-       "YES" (angry-professor 3 [-1 -3 4 2])
-       "NO" (angry-professor 2 [0 -1 2 1])))
+    "YES" (angry-professor 3 [-1 -3 4 2])
+    "NO" (angry-professor 2 [0 -1 2 1])))
+
+(deftest count-valleys-test
+  (are [expected input] (= expected (count-valleys input))
+    0 "UUU"
+    1 "D"
+    1 "UDDDUDUU"
+    3 "DUDUD"))
