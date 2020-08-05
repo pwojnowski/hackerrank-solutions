@@ -43,6 +43,9 @@
     (doseq [line (rest lines)]
       (println (f (Long/parseLong line))))))
 
+(defn ->numbers-vec [s]
+  (mapv #(Integer/valueOf %) (.split s " ")))
+
 ;; (for [i (range (Integer/parseInt (read-line)))
 ;;       x (Double/parseDouble (read-line))])
 
@@ -158,3 +161,15 @@
   "Solution to https://www.hackerrank.com/challenges/counting-valleys"
   [s]
   (first (reduce valleys-counter [0 0] s)))
+
+(defn service-lane
+  "Solution to https://www.hackerrank.com/challenges/service-lane"
+  [lines segment]
+  (let [widths (->numbers-vec lines)]
+    (let [[from to] (->numbers-vec segment)]
+      (reduce min (subvec widths from (inc to))))))
+
+;; (let [[n t] (->numbers-vec (read-line)) ;; number of widths and segments
+;;       widths (->numbers-vec (read-line))]
+;;   (dotimes [_ t]
+;;     (println (service-lane widths (read-line)))))
