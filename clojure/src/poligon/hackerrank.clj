@@ -173,3 +173,24 @@
 ;;       widths (->numbers-vec (read-line))]
 ;;   (dotimes [_ t]
 ;;     (println (service-lane widths (read-line)))))
+
+(defn plus-minus
+  "Solution to https://www.hackerrank.com/challenges/plus-minus"
+  [nums]
+  (let [groups (group-by (fn [x] (cond
+                                   (pos? x) :positive
+                                   (zero? x) :zero
+                                   (neg? x) :negative)) nums)
+        n (count nums)
+        npos (count (:positive groups))]
+    (printf "%.6f%n" (double (/ (count (:positive groups)) n)))
+    (printf "%.6f%n" (double (/ (count (:negative groups)) n)))
+    (printf "%.6f%n" (double (/ (count (:zero groups)) n)))))
+
+(defn staircase
+  "Solution to https://www.hackerrank.com/challenges/staircase"
+  [n]
+  (dotimes [row n]
+    (dotimes [space (- n row 1)] (print \space))
+    (dotimes [h (inc row)] (print \#))
+    (println)))
