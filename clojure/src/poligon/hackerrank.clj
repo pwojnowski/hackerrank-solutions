@@ -194,3 +194,16 @@
     (dotimes [space (- n row 1)] (print \space))
     (dotimes [h (inc row)] (print \#))
     (println)))
+
+(defn- sum-in-row [i row]
+  (let [parts (.split row " ")]
+    (- (Integer/parseInt (get parts i))
+       (Integer/parseInt (get parts (- (count parts) i 1))))))
+
+(defn diagonal-difference
+  "Solution to https://www.hackerrank.com/challenges/diagonal-difference"
+  [arr]
+  (Math/abs (reduce + (map-indexed sum-in-row arr))))
+;; (let [n (Integer/parseInt (read-line))
+;;       arr (.split (slurp *in*) "\n")]
+;;   (print (diagonal-difference arr)))
