@@ -207,3 +207,17 @@
 ;; (let [n (Integer/parseInt (read-line))
 ;;       arr (.split (slurp *in*) "\n")]
 ;;   (print (diagonal-difference arr)))
+
+(defn- sum-with-min-max [arr]
+  (reduce (fn [[sum minn maxn] x]
+            [(+ sum x) (Math/min minn x) (Math/max maxn x)])
+          [0 Integer/MAX_VALUE Integer/MIN_VALUE]
+          arr))
+
+(defn mini-max-sum
+  "Solution to https://www.hackerrank.com/challenges/mini-max-sum"
+  [arr]
+  (let [[sum min-val max-val] (sum-with-min-max arr)
+        smallest-sum (- sum max-val)
+        largest-sum (- sum min-val)]
+    [smallest-sum largest-sum]))

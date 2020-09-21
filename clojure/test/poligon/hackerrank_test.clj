@@ -104,3 +104,7 @@
       1 "2 4"
       1 "2 4"
       2 "2 3")))
+
+(deftest mini-max-test
+  (is (= [10 14] (mini-max-sum (range 1 6))))
+  (is (= [16 24] (mini-max-sum (range 1 10 2)))))
