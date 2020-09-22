@@ -221,3 +221,28 @@
         smallest-sum (- sum max-val)
         largest-sum (- sum min-val)]
     [smallest-sum largest-sum]))
+
+(defn birthday-cake-candles
+  "https://www.hackerrank.com/challenges/birthday-cake-candles"
+  [arr]
+  (first
+   (reduce (fn [[n x] y]
+             (cond
+               (= x y) [(inc n) x]
+               (> x y) [n x]
+               :else [1 y]))
+           [0 0]
+           arr)))
+
+(defn birthday-cake-candles-loop
+  "https://www.hackerrank.com/challenges/birthday-cake-candles"
+  [candles]
+  (let [n (count candles)]
+    (loop [i 0 x 0 xes 0]
+      (if (< i n)
+        (let [y (get candles i)]
+          (cond
+            (= x y) (recur (inc i) x (inc xes))
+            (> x y) (recur (inc i) x xes)
+            :else (recur (inc i) y 1)))
+        xes))))
