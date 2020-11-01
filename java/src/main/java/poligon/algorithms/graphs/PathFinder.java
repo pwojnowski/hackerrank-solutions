@@ -72,13 +72,13 @@ public class PathFinder {
         }
     }
 
-    public boolean hasPathTo(int target) {
+    public boolean isReachable(int target) {
         return marked[target];
     }
 
     public Iterable<Integer> pathTo(int v) {
         LinkedList<Integer> reversedPath = new LinkedList<>();
-        if (hasPathTo(v)) {
+        if (isReachable(v)) {
             reversedPath.addFirst(v);
             while (v != startVertex) {
                 reversedPath.addFirst(edgeTo[v]);

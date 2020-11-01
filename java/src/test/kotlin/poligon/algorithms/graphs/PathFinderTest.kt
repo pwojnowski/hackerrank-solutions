@@ -28,9 +28,9 @@ class PathFinderTest {
     fun shouldFindPathUsingRecursiveDFS() {
         val finder = PathFinder.recursiveDfs(sg.graph(), krkIdx)
 
-        assertTrue(finder.hasPathTo(wawIdx))
-        assertTrue(finder.hasPathTo(gdaIdx))
-        assertTrue(finder.hasPathTo(szyIdx))
+        assertTrue(finder.isReachable(wawIdx))
+        assertTrue(finder.isReachable(gdaIdx))
+        assertTrue(finder.isReachable(szyIdx))
 
         assertEquals(listOf(krkIdx, wawIdx), finder.pathTo(wawIdx))
         assertEquals(listOf(krkIdx, wawIdx, szyIdx), finder.pathTo(szyIdx))
@@ -40,9 +40,9 @@ class PathFinderTest {
     fun shouldFindPathUsingIterativeDFS() {
         val finder = PathFinder.iterativeDfs(sg.graph(), krkIdx)
 
-        assertTrue(finder.hasPathTo(wawIdx))
-        assertTrue(finder.hasPathTo(gdaIdx))
-        assertTrue(finder.hasPathTo(szyIdx))
+        assertTrue(finder.isReachable(wawIdx))
+        assertTrue(finder.isReachable(gdaIdx))
+        assertTrue(finder.isReachable(szyIdx))
 
         assertEquals(listOf(krkIdx, wawIdx), finder.pathTo(wawIdx))
         assertEquals(listOf(krkIdx, wawIdx, szyIdx), finder.pathTo(szyIdx))
@@ -52,9 +52,9 @@ class PathFinderTest {
     fun shouldFindPathUsingBFS() {
         val finder = PathFinder.bfs(sg.graph(), krkIdx)
 
-        assertTrue(finder.hasPathTo(wawIdx))
-        assertTrue(finder.hasPathTo(gdaIdx))
-        assertTrue(finder.hasPathTo(szyIdx))
+        assertTrue(finder.isReachable(wawIdx))
+        assertTrue(finder.isReachable(gdaIdx))
+        assertTrue(finder.isReachable(szyIdx))
 
         assertEquals(listOf(krkIdx, wawIdx), finder.pathTo(wawIdx))
         assertEquals(listOf(krkIdx, wawIdx, szyIdx), finder.pathTo(szyIdx))
