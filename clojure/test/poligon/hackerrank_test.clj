@@ -114,3 +114,11 @@
   (is (= 3 (jumping-on-clouds 7 [0 1 0 0 0 1 0])))
   (is (= 4 (jumping-on-clouds 7 [0 0 1 0 0 1 0])))
   (is (= 1 (jumping-on-clouds 3 [0 1 0]))))
+
+(deftest repeated-string-test
+  (is (= 0 (repeated-string "bcd" 1)))
+  (is (= 1 (repeated-string "a" 1)))
+  (is (= 5 (repeated-string "a" 5)))
+  (is (= 3 (repeated-string "abc" 9)))
+  (is (= 7 (repeated-string "aba" 10)))
+  (is (= 1000000000000 (repeated-string "a" 1000000000000))))

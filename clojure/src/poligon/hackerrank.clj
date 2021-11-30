@@ -259,3 +259,14 @@
       (can-jump? n clouds (+ i 2)) (recur (+ i 2) (inc jumps))
       (can-jump? n clouds (+ i 1)) (recur (+ i 1) (inc jumps))
       :else jumps)))
+
+(defn- count-as [s]
+  (count (filter #(= \a %) s)))
+
+(defn repeated-string
+  "https://www.hackerrank.com/challenges/repeated-string"
+  [s n]
+  (let [len (count s)
+        a-cnt (count-as s)]
+    (+ (* a-cnt (quot n len))
+       (count-as (take (rem n len) s)))))
