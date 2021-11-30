@@ -246,3 +246,16 @@
             (> x y) (recur (inc i) x xes)
             :else (recur (inc i) y 1)))
         xes))))
+
+(defn- can-jump? [n clouds i]
+  (and (< i n)
+       (zero? (get clouds i))))
+
+(defn jumping-on-clouds
+  "https://www.hackerrank.com/challenges/jumping-on-the-clouds"
+  [n clouds]
+  (loop [i 0 jumps 0]
+    (cond
+      (can-jump? n clouds (+ i 2)) (recur (+ i 2) (inc jumps))
+      (can-jump? n clouds (+ i 1)) (recur (+ i 1) (inc jumps))
+      :else jumps)))

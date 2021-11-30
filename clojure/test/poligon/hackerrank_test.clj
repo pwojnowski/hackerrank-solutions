@@ -108,3 +108,9 @@
 (deftest mini-max-test
   (is (= [10 14] (mini-max-sum (range 1 6))))
   (is (= [16 24] (mini-max-sum (range 1 10 2)))))
+
+
+(deftest jumping-on-clouds-test
+  (is (= 3 (jumping-on-clouds 7 [0 1 0 0 0 1 0])))
+  (is (= 4 (jumping-on-clouds 7 [0 0 1 0 0 1 0])))
+  (is (= 1 (jumping-on-clouds 3 [0 1 0]))))
