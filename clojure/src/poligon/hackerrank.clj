@@ -37,7 +37,7 @@
 
 (defn do-lines-long
   "Read whole input and executes function F on lines from 2nd to the end."
-  [f]
+  [f lines]
   (let [i (Integer/parseInt (read-line))]
     (reduce #(conj % (f %2)) [] )
     (doseq [line (rest lines)]
