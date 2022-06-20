@@ -10,7 +10,7 @@
     <properties>
         <java.version>13</java.version>
         <junit.version>5.5.2</junit.version>
-        <kotlin.version>1.3.61</kotlin.version>
+        <kotlin.version>1.6.0</kotlin.version>
 <!--        <kotlin.compiler.incremental>true</kotlin.compiler.incremental>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
