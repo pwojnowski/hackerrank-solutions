@@ -3,6 +3,7 @@ package poligon.algorithms.strings;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * https://www.hackerrank.com/challenges/two-strings/problem
@@ -10,16 +11,12 @@ import java.util.stream.Collectors;
 public class TwoStrings {
 
     static String twoStrings(String s1, String s2) {
-        Set<Character> chars1 = stringToCharSet(s1);
-        Set<Character> chars2 = stringToCharSet(s2);
-
-        chars1.retainAll(chars2);
-
-        return chars1.size() > 0 ? "YES" : "NO";
+        Set<Character> chars = toCharStream(s1).collect(Collectors.toSet());
+        return toCharStream(s2).anyMatch(chars::contains) ? "YES" : "NO";
     }
 
-    private static Set<Character> stringToCharSet(String s) {
-        return s.chars().mapToObj(c -> (char) c).collect(Collectors.toSet());
+    private static Stream<Character> toCharStream(String s) {
+        return s.chars().mapToObj(c -> (char) c);
     }
 
     public static void main(String[] args) {
